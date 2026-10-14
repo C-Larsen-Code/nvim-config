@@ -745,7 +745,23 @@ do
   --  See `:help lsp-config` for information about keys and how to configure
   ---@type table<string, vim.lsp.Config>
   local servers = {
-    -- clangd = {},
+    clangd = {
+      filetypes = { 'c', 'cpp' },
+    },
+    arduino_language_server = {
+      filetypes = { 'arduino' },
+      cmd = {
+        'arduino-language-server',
+        '-clangd',
+        '$HOME/.local/share/nvim/mason/clangd',
+        '-cli',
+        '$HOME/.local/bin/arduino-cli',
+        '-cli-config',
+        '$HOME/.arduino15/arduino-cli.yaml',
+        '-fqbn',
+        'arduino:avr:nano:avr328old',
+      },
+    },
     -- gopls = {},
     -- pyright = {},
     -- tsc = {},
